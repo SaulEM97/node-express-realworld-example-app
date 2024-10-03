@@ -8,14 +8,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                nodejs(NodeJS16.20.1)
+                nodejs('NodeJS16.20.1'){
                     sh 'npm i'
                     sh 'npm add --global nx@latest'
                     sh 'npx prisma generate'
                     sh 'npx prisma migrate deploy'
                     sh 'npx nx@latest --interactive init'
                     sh 'npx nx serve api'
-                    sh 'npx prisma db seed' 
+                    sh 'npx prisma db seed
+                }
             }
         }
     }  
