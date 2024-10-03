@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    enviroment{
+        DATABASE_URL='postgresql://saulem:Assasinsegg97$%@localhost:5432/postgres'
+        JWT_SECRET='8afc12c43d786ac377eedab5ccbb782a5ee66d6650fee067a3caa2b63b114174'
+        NODE_ENV='production'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                nodejs(NodeJS16.20.1)
+                    sh 'npm i'
+                    sh 'npm add --global nx@latest'
+                    sh 'npx prisma generate'
+                    sh 'npx prisma migrate deploy'
+                    sh 'npx nx@latest --interactive init'
+                    sh 'npx nx serve api'
+                    sh 'npx prisma db seed' 
+            }
+        }
+    }  
+}
+
