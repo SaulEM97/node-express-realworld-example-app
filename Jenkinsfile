@@ -13,7 +13,7 @@ pipeline {
                     sh 'npm add --global nx@latest'
                     sh 'npx prisma generate'
                     sh 'npx prisma migrate deploy'
-                    sh 'npx nx init --useDotNxInstallation'
+                    sh 'npx nx init --useDotNxInstallation --plugin=@nx/eslint --plugin=@nx/jest'
                     sh 'npx nx serve api'
                     sh 'npx prisma db seed'
                 }
