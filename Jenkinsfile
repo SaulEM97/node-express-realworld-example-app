@@ -10,11 +10,14 @@ pipeline {
         stage('Build') {
             steps {
                 nodejs('NodeJS16.20.1'){
-                    sh 'rm -rf node_modules && rm package-lock.json'
-                    sh 'npm cache verify'
-                    sh 'npm install -g @nrwl/cli'
                     sh 'npm install'
-                    sh 'npm start'  
+                    sh 'npm audit fix --force'
+                    sh 'npm add --global nx@latest'
+                    sh 'npx prisma generate'
+                    sh 'npx prisma migrate deploy'
+                    sh 'npx nx init --useDotNxInstallation'
+                    sh 'npx nx serve api'
+                    sh 'npx prisma db seed'
                 }
             }
         }
