@@ -14,7 +14,7 @@ pipeline {
                     sh 'rm package-lock.json'
                     sh 'npm install'
                     sh 'npm add --global nx@latest'
-                    sh 'nx migrate'
+                    sh 'npx nx migrate'
                     sh 'npm install'
                     sh 'nx migrate --run-migrations=migrations.json'
                     sh 'npm start'  
