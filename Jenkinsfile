@@ -12,7 +12,9 @@ pipeline {
                 nodejs('NodeJS16.20.1'){
                     sh 'npm cache clean --force'
                     sh 'rm -r node_modules && rm package-lock.json'
+                    sh 'nx migrate'
                     sh 'npm install'
+                    sh 'nx migrate --run-migrations=migrations.json'
                     sh 'npm start'  
                 }
             }
