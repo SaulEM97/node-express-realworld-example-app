@@ -13,6 +13,7 @@ pipeline {
                     sh 'npm cache clean --force'
                     sh 'rm package-lock.json'
                     sh 'npm install'
+                    sh 'npm add --global nx@latest'
                     sh 'nx migrate'
                     sh 'npm install'
                     sh 'nx migrate --run-migrations=migrations.json'
