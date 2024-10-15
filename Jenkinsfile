@@ -11,7 +11,6 @@ pipeline {
                 nodejs('NodeJS16.20.1'){
                     sh 'npm install'
                     sh 'npm audit fix --force'
-                    sh 'npm add --global nx@latest'
                     sh 'npx prisma generate'
                     sh 'npx prisma migrate deploy'
                     sh 'npx nx init --useDotNxInstallation'
