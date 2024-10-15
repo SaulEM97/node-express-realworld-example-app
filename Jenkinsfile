@@ -10,9 +10,10 @@ pipeline {
         stage('Build') {
             steps {
                 nodejs('NodeJS16.20.1'){
-                    sh 'npm i'
-                    sh 'npx prisma generate'
-                    sh 'npm ci && npx prisma migrate deploy && node dist/api/main.js'  
+                    sh 'npm cache clean --force'
+                    sh 'rm -r node_modules && rm package-lock.json'
+                    sh 'npm install'
+                    sh 'npm start'  
                 }
             }
         }
