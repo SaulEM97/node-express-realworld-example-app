@@ -10,13 +10,10 @@ pipeline {
         stage('Build') {
             steps {
                 nodejs('NodeJS16.20.1'){
-                    sh 'npm cache clean --force'
-                    sh 'rm package-lock.json'
+                    sh 'rm -rf node_modules && rm package-lock.json'
+                    sh 'npm cache verify'
+                    sh 'npm install -g @nrwl/cli'
                     sh 'npm install'
-                    sh 'npm add --global nx@latest'
-                    sh 'npx nx migrate'
-                    sh 'npm install'
-                    sh 'nx migrate --run-migrations=migrations.json'
                     sh 'npm start'  
                 }
             }
