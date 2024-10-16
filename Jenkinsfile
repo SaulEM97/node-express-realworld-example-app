@@ -13,8 +13,8 @@ pipeline {
                     sh 'npx prisma generate'
                     sh 'npx prisma migrate deploy'
                     sh 'npx nx init --interactive=false'
-                    sh 'node dist/api/main.js'
                     sh 'npx prisma db seed'
+                    sh 'node dist/api/main.js'
                 }
             }
         }
