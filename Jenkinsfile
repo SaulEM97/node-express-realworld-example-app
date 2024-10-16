@@ -3,7 +3,6 @@ pipeline {
     environment{
         DATABASE_URL='postgresql://postgres:Assasinsegg97$%@localhost:5432/postgres'
         JWT_SECRET='8afc12c43d786ac377eedab5ccbb782a5ee66d6650fee067a3caa2b63b114174'
-        NODE_ENV='production'
     }
     stages {
         stage('Build') {
