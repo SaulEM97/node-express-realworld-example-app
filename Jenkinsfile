@@ -13,7 +13,7 @@ pipeline {
                     sh 'npm audit fix --force'
                     sh 'npx prisma generate'
                     sh 'npx prisma migrate deploy'
-                    sh 'npx nx init --useDotNxInstallation'
+                    sh 'npx nx init --interactive=false'
                     sh 'npx nx serve api'
                     sh 'npx prisma db seed'
                 }
